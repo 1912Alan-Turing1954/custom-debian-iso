@@ -18,8 +18,8 @@ Move said ISO to your prefered work eviroment *"/home/user or /mnt"*.
 Create a directory to mount the ISO and then mount the Debian ISO into that directory.
 
 ```bash
-mkdir ~/iso_mount
-sudo mount -o loop debian.iso ~/iso_mount
+mkdir iso_mount
+sudo mount -o loop debian.iso iso_mount
 ```
 ## 3. Create the necessary mount points inside iso-mount
 ```bash
@@ -52,8 +52,8 @@ sudo mount --bind /boot iso-mount/boot
 Copy the contents of the ISO to a working directory where you can make modifications.
 
 ```bash
-mkdir ~/custom_debian
-cp -r ~/iso_mount/* ~/custom_debian
+mkdir custom_debian
+cp -r iso_mount/* custom_debian
 ```
 
 ## 6. Make Customizations
@@ -62,7 +62,7 @@ cp -r ~/iso_mount/* ~/custom_debian
 Use `chroot` to enter the Debian system in the working directory. This allows you to make changes as if you were inside a live Debian environment.
 
 ```bash
-sudo chroot ~/custom_debian
+sudo chroot custom_debian
 ```
 
 ## 7. Update Package Lists
@@ -108,7 +108,7 @@ apt-get clean
 Unmount the original ISO.
 
 ```bash
-sudo umount ~/iso_mount
+sudo umount iso_mount
 ```
 ## 11. Create New Custom ISO
 
@@ -116,7 +116,7 @@ sudo umount ~/iso_mount
 Create a new ISO image that includes your modifications.
 
 ```bash
-sudo mkisofs -o custom_debian.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Custom Debian ISO" ~/custom_debian
+sudo mkisofs -o custom_debian.iso -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -J -R -V "Custom Debian ISO" custom_debian
 ```
 
 ## 12. Test the Custom ISO
