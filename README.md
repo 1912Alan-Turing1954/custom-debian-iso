@@ -1,6 +1,5 @@
 # custom-debian-iso
 
-## Customizing Debian ISO
 
 ## 1. Set Up a Build Environment
 
